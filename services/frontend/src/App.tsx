@@ -375,12 +375,12 @@ export default function App() {
               <div className="card">
                 <div style={{ color: '#94a3b8', fontSize: '0.85rem' }}>Auto-Accept Precision</div>
                 <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#34d399' }}>98.8%</div>
-                <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.5rem' }}>Target >= 98.0% (CI Gate PASS)</div>
+                <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.5rem' }}>Target &gt;= 98.0% (CI Gate PASS)</div>
               </div>
               <div className="card">
                 <div style={{ color: '#94a3b8', fontSize: '0.85rem' }}>Top-5 Retrieval Recall</div>
                 <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#60a5fa' }}>88.5%</div>
-                <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.5rem' }}>Target >= 85.0% (CI Gate PASS)</div>
+                <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.5rem' }}>Target &gt;= 85.0% (CI Gate PASS)</div>
               </div>
               <div className="card">
                 <div style={{ color: '#94a3b8', fontSize: '0.85rem' }}>Avg Coding Review Time</div>
