@@ -12,6 +12,7 @@ from clincode_api.routes.queries import router as queries_router
 from clincode_api.routes.export import router as export_router
 from clincode_api.routes.admin import router as admin_router
 from clincode_api.routes.investigate import router as investigate_router
+from clincode_api.routes.contact import router as contact_router
 
 
 def create_app() -> FastAPI:
@@ -58,6 +59,7 @@ def create_app() -> FastAPI:
     app.include_router(export_router, prefix=v1_router_prefix)
     app.include_router(admin_router, prefix=v1_router_prefix)
     app.include_router(investigate_router, prefix=v1_router_prefix)
+    app.include_router(contact_router, prefix=v1_router_prefix)
 
     return app
 
