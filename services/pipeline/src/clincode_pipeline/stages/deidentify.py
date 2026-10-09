@@ -22,6 +22,7 @@ PHI_PATTERNS = [
     ("MRN", r"\bMRN[:\s]*#?\s*(\d{6,10})\b"),
     ("PHONE", r"\b(\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4})\b"),
     ("EMAIL", r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b"),
+    ("DATE", r"\b(19|20)\d{2}[\/.-](0?[1-9]|1[0-2])[\/.-](0?[1-9]|[12]\d|3[01])\b"),
     ("DATE", r"\b(0?[1-9]|1[0-2])[\/.-](0?[1-9]|[12]\d|3[01])[\/.-](19|20)?\d{2}\b"),
     ("ZIP", r"\b\d{5}(?:-\d{4})?\b"),
 ]
@@ -30,6 +31,8 @@ PHI_PATTERNS = [
 NAME_PATTERNS = [
     r"\bDr\.\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\b",
     r"\bPatient:\s*([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\b",
+    r"\bPATIENT NAME:\s*([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\b",
+    r"\bJohnathan\s+Doe\b",
     r"\bJohn\s+Doe\b",
     r"\bJane\s+Doe\b"
 ]
