@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "clincode_api"
+version = "0.1.0"
+description = "ClinCode FastAPI API Service"
+authors = [{ name = "ClinCode Team" }]
+dependencies = [
+    "fastapi>=0.110.0",
+    "uvicorn>=0.28.0",
+    "pydantic>=2.6.0",
+    "pydantic-settings>=2.2.0",
+    "sqlalchemy>=2.0.28",
+    "psycopg2-binary>=2.9.9",
+    "alembic>=1.13.1",
+    "python-jose[cryptography]>=3.3.0",
+    "passlib[bcrypt]>=1.7.4",
+    "python-multipart>=0.0.9",
+    "redis>=5.0.3",
+    "cryptography>=42.0.5",
+    "prometheus-client>=0.20.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.1.1",
+    "pytest-asyncio>=0.23.6",
+    "httpx>=0.27.0"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

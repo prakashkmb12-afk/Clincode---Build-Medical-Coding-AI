@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "clincode_pipeline"
+version = "0.1.0"
+description = "ClinCode Pipeline Worker Service"
+authors = [{ name = "ClinCode Team" }]
+dependencies = [
+    "redis>=5.0.3",
+    "sqlalchemy>=2.0.28",
+    "psycopg2-binary>=2.9.9",
+    "pydantic>=2.6.0",
+    "pydantic-settings>=2.2.0",
+    "cryptography>=42.0.5",
+    "qdrant-client>=1.8.0",
+    "onnxruntime>=1.17.1",
+    "opencv-python-headless>=4.9.0",
+    "pypdf>=4.1.0",
+    "scikit-learn>=1.4.1",
+    "numpy>=1.26.4",
+    "requests>=2.31.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.1.1"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

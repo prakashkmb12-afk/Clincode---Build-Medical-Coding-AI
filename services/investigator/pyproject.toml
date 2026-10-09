@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "investigator"
+version = "0.1.0"
+description = "ClinCode Multi-Agent Investigation Service"
+authors = [{ name = "ClinCode Team" }]
+dependencies = [
+    "fastapi>=0.110.0",
+    "uvicorn>=0.28.0",
+    "pydantic>=2.6.0",
+    "pydantic-settings>=2.2.0",
+    "sqlalchemy>=2.0.28",
+    "psycopg2-binary>=2.9.9",
+    "qdrant-client>=1.8.0",
+    "langchain-core>=0.1.30",
+    "langgraph>=0.0.30",
+    "requests>=2.31.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.1.1"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
