@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useAuth, AppRole } from '../context/AuthContext'
-import { LogIn, Shield, CheckCircle, AlertCircle, ArrowLeft } from 'lucide-react'
+import { LogIn, Shield, CheckCircle, AlertCircle, ArrowLeft, ExternalLink } from 'lucide-react'
 
 export const Login: React.FC = () => {
   const { signInWithGoogle, demoLogin, loading, error, user } = useAuth()
@@ -25,6 +25,8 @@ export const Login: React.FC = () => {
     navigate(`/dashboard/${user.role}`, { replace: true })
   }
 
+  const isUnauthorizedDomain = error?.includes('auth/unauthorized-domain')
+
   return (
     <div style={{ background: '#0f172a', color: '#f8fafc', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '1.5rem', fontFamily: 'Inter, sans-serif' }}>
       <div style={{ position: 'absolute', top: '1.5rem', left: '1.5rem' }}>
@@ -33,8 +35,8 @@ export const Login: React.FC = () => {
         </button>
       </div>
 
-      <div style={{ background: '#1e293b', border: '1px solid #334155', borderRadius: '16px', width: '100%', maxWidth: '440px', padding: '2.5rem 2rem', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)' }}>
-        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+      <div style={{ background: '#1e293b', border: '1px solid #334155', borderRadius: '16px', width: '100%', maxWidth: '460px', padding: '2.5rem 2rem', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)' }}>
+        <div style={{ textAlign: 'center', marginBottom: '1.75rem' }}>
           <div style={{ display: 'inline-flex', background: '#2563eb', padding: '0.6rem 0.9rem', borderRadius: '12px', color: '#fff', fontWeight: 'bold', fontSize: '1.4rem', marginBottom: '1rem' }}>
             CC
           </div>
@@ -44,10 +46,33 @@ export const Login: React.FC = () => {
           </p>
         </div>
 
+        {/* Error Alert */}
         {error && (
-          <div style={{ background: 'rgba(239, 68, 68, 0.15)', border: '1px solid #ef4444', color: '#fca5a5', padding: '0.85rem', borderRadius: '8px', marginBottom: '1.5rem', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <AlertCircle size={18} />
-            <div>{error}</div>
+          <div style={{ background: 'rgba(239, 68, 68, 0.15)', border: '1px solid #ef4444', color: '#fca5a5', padding: '1rem', borderRadius: '8px', marginBottom: '1.5rem', fontSize: '0.85rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 'bold', marginBottom: '0.4rem', color: '#f87171' }}>
+              <AlertCircle size={18} />
+              <span>{isUnauthorizedDomain ? 'Firebase Domain Authorization Required' : 'Authentication Error'}</span>
+            </div>
+            {isUnauthorizedDomain ? (
+              <div style={{ lineHeight: 1.5 }}>
+                <p style={{ margin: '0 0 0.5rem' }}>
+                  Firebase blocked requests from <code>127.0.0.1</code>. Choose one of these quick fixes:
+                </p>
+                <div style={{ marginTop: '0.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <a
+                    href="http://localhost:3000/login"
+                    style={{ background: '#2563eb', color: '#fff', padding: '0.4rem 0.8rem', borderRadius: '4px', textDecoration: 'none', textAlign: 'center', fontWeight: 600, fontSize: '0.8rem', display: 'inline-block' }}
+                  >
+                    🚀 Open via http://localhost:3000/login
+                  </a>
+                  <span style={{ fontSize: '0.75rem', color: '#cbd5e1' }}>
+                    Or in Firebase Console ➔ Authentication ➔ Settings ➔ Authorized domains, add <code>127.0.0.1</code>.
+                  </span>
+                </div>
+              </div>
+            ) : (
+              <div>{error}</div>
+            )}
           </div>
         )}
 
@@ -88,7 +113,7 @@ export const Login: React.FC = () => {
           <svg width="18" height="18" viewBox="0 0 18 18">
             <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.616z" />
             <path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z" />
-            <path fill="#FBBC05" d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332z" />
+            <path fill="#FBBC05" d="M3.964 10.71 A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332z" />
             <path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z" />
           </svg>
           {loading ? 'Authenticating with Google...' : 'Continue with Google'}
